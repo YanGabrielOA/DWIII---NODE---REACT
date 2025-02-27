@@ -1,12 +1,37 @@
 import express from "express";
+import mongoose from "mongoose";
+
+import Game from "./models/games.js"
+
 const app = express();
 
 //CONFIGURANDO O EXPRESS
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+//INICIANDO CONEXAO COM O BANCO DE DADOS
+mongoose.connect("mongodb://127.0.0.1:27017/api-the-games");
+
 //CRIANDO A ROTA PRINCIPAL
 
-app.get("/", (req, res) => res.send("API Iniciado com sucesso!!"));
+app.get("/", (req, res) => {
+  //   res.send("API iniciada com sucesso!");
+  const games = [
+    {
+      title: "Game 1",
+      year: 2020,
+      platform: "PC",
+      price: 20,
+    },
+    {
+      title: "Game 2",
+      year: 2024,
+      platform: "Playstation 5",
+      price: 200,
+    },
+  ];
+  res.json(games);
+});
 
 //INICIANDO O SERVIDOR
 const port = 4000;
