@@ -40,7 +40,7 @@ class gameService {
     try {
       await Game.findByIdAndUpdate(id, title, year, price, descriptions);
       console.log(`Dados do game com a id:${id} ALTERADOS COM SUCESSO`);
-    } catch (error) {
+      } catch (error) {
       console.log(error);
     }
   }
