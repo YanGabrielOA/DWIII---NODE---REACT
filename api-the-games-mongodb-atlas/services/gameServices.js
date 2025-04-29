@@ -11,14 +11,14 @@ class gameService {
   }
 
   // Função para cadastrar jogos
-  async Create(title, platform, year, price) {
+  async Create(title, year, price,descriptions) {
     try {
       const newGame = new Game({
         // title : title
         title,
-        platform,
         year,
         price,
+        descriptions,
       });
       await newGame.save();
     } catch (error) {
@@ -36,9 +36,9 @@ class gameService {
     }
   }
 
-  async Update(id, title, platform, year, price) {
+  async Update(id, title, year, price, descriptions) {
     try {
-      await Game.findByIdAndUpdate(id, title, platform, year, price);
+      await Game.findByIdAndUpdate(id, title, year, price, descriptions);
       console.log(`Dados do game com a id:${id} ALTERADOS COM SUCESSO`);
     } catch (error) {
       console.log(error);
